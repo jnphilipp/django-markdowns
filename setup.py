@@ -19,17 +19,15 @@
 # along with django_markdowns.  If not, see <http://www.gnu.org/licenses/>.
 """Setup django_markdowns package."""
 
-from scripts import setupcommon as common
 from setuptools import setup
 
 
 def read_file(name):
     """Get the string contained in the file named name."""
-    with common.open_file(name, "r", encoding="utf-8") as f:
+    with open(name, "r", encoding="utf-8") as f:
         return f.read()
 
 
-common.write_git_file()
 setup(
     name="django_markdowns",
     version="0.1.0",
