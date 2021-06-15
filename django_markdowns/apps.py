@@ -26,4 +26,4 @@ class MarkdownConfig(AppConfig):
     """Markdown app config."""
 
     default_auto_field = "django.db.models.BigAutoField"
-    name = "markdowns"
+    name = "django_markdowns"
