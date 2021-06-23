@@ -28,7 +28,12 @@ from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.core.validators import EmailValidator
 from django.urls import reverse, resolve, Resolver404, NoReverseMatch
-from markdown.inlinepatterns import LinkInlineProcessor, LINK_RE
+from markdown.inlinepatterns import (
+    ImageInlineProcessor,
+    LinkInlineProcessor,
+    IMAGE_LINK_RE,
+    LINK_RE,
+)
 from typing import Optional, Tuple
 from urllib.parse import urlparse
 
@@ -105,9 +110,18 @@ class DjangoLinkInlineProcessor(LinkInlineProcessor):
         return href
 
 
+class DjangoImageInlineProcessor(DjangoLinkInlineProcessor, ImageInlineProcessor):
+    """Django link inline processor."""
+
+    pass
+
+
 class DjangoExtension(markdown.Extension):
     """Django markdown extension."""
 
     def extendMarkdown(self, md: markdown.Markdown, *args, **kwrags):
         """Extend markdown."""
         md.inlinePatterns.register(DjangoLinkInlineProcessor(LINK_RE, md), "link", 160)
+        md.inlinePatterns.register(
+            DjangoImageInlineProcessor(IMAGE_LINK_RE, md), "image_link", 150
+        )
