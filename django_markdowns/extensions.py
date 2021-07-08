@@ -18,7 +18,8 @@
 # along with django_markdowns.  If not, see <http://www.gnu.org/licenses/>.
 """Django markdowns extensions for markdown.
 
-Django extension based on https://gist.github.com/hakib/73fccc340e855bb65f42197e298c0c7d
+DjangoLinkInlineProcessor based on
+https://gist.github.com/hakib/73fccc340e855bb65f42197e298c0c7d
 """
 
 import re
@@ -36,6 +37,9 @@ from markdown.inlinepatterns import (
 )
 from typing import Optional, Tuple
 from urllib.parse import urlparse
+from xml.etree.ElementTree import Element
+
+from .settings import IMG_CLASS
 
 
 class DjangoLinkInlineProcessor(LinkInlineProcessor):
@@ -113,7 +117,13 @@ class DjangoLinkInlineProcessor(LinkInlineProcessor):
 class DjangoImageInlineProcessor(DjangoLinkInlineProcessor, ImageInlineProcessor):
     """Django link inline processor."""
 
-    pass
+    def handleMatch(self, m: re.Match, data: str) -> Tuple[Element, int, int]:
+        """Handle Match."""
+        el, start, end = super().handleMatch(m, data)
+
+        if IMG_CLASS:
+            el.set("class", IMG_CLASS)
+        return el, start, end
 
 
 class DjangoExtension(markdown.Extension):
