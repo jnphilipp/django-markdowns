@@ -42,7 +42,7 @@ setup(
     long_description_content_type="text/plain",
     zip_safe=True,
     install_requires=["markdown"],
-    python_requires=">=3.6",
+    python_requires=">=3.7",
     license="GPL",
     platforms=["any"],
     classifiers=[
@@ -55,6 +55,7 @@ setup(
         "Framework :: Django :: 3.0",
         "Framework :: Django :: 3.1",
         "Framework :: Django :: 3.2",
+        "Framework :: Django :: 4.0",
         "Programming Language :: Python",
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
