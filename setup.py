@@ -30,7 +30,7 @@ def read_file(name):
 
 setup(
     name="django_markdowns",
-    version="0.1.1",
+    version="0.1.2",
     description="Bring markdown functionality to Django.",
     author="J. Nathanael Philipp",
     author_email="nathanael@philipp.land",
