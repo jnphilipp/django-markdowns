@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # vim: ft=python fileencoding=utf-8 sts=4 sw=4 et:
-# Copyright (C) 2021-2022 J. Nathanael Philipp (jnphilipp) <nathanael@philipp.land>
+# Copyright (C) 2021-2023 J. Nathanael Philipp (jnphilipp) <nathanael@philipp.land>
 #
 # This file is part of django_markdowns.
 #
@@ -30,7 +30,7 @@ def read_file(name):
 
 setup(
     name="django_markdowns",
-    version="0.1.2",
+    version="0.1.3",
     description="Bring markdown functionality to Django.",
     author="J. Nathanael Philipp",
     author_email="nathanael@philipp.land",
