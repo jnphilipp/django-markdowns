@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # vim: ft=python fileencoding=utf-8 sts=4 sw=4 et:
-# Copyright (C) 2021-2022 J. Nathanael Philipp (jnphilipp) <nathanael@philipp.land>
+# Copyright (C) 2021-2023 J. Nathanael Philipp (jnphilipp) <nathanael@philipp.land>
 #
 # This file is part of django_markdowns.
 #
@@ -20,9 +20,11 @@
 
 
 __author__ = "J. Nathanael Philipp"
-__copyright__ = "Copyright 2021-2022 J. Nathanael Philipp (jnphilipp)"
-__license__ = "GPL"
+__copyright__ = "Copyright 2021-2023 J. Nathanael Philipp (jnphilipp)"
+__license__ = "GPLv3+"
 __maintainer__ = __author__
 __email__ = "nathanael@philipp.land"
-__version__ = "0.1.2"
-__version_info__ = tuple(int(part) for part in __version__.split("."))
+__app_name__ = "django_markdowns"
+__version_info__ = (0, 3, 5)
+__version__ = ".".join(str(e) for e in __version_info__)
+__github__ = "https://github.com/jnphilipp/django-markdowns"

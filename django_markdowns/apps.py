@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # vim: ft=python fileencoding=utf-8 sts=4 sw=4 et:
-# Copyright (C) 2021-2022 J. Nathanael Philipp (jnphilipp) <nathanael@philipp.land>
+# Copyright (C) 2021-2023 J. Nathanael Philipp (jnphilipp) <nathanael@philipp.land>
 #
 # This file is part of django_markdowns.
 #
@@ -16,14 +16,14 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with django_markdowns.  If not, see <http://www.gnu.org/licenses/>.
-"""Markdown Django app config."""
+"""Markdowns Django app config."""
 
 
 from django.apps import AppConfig
 
 
-class MarkdownConfig(AppConfig):
-    """Markdown app config."""
+class MarkdownsConfig(AppConfig):
+    """Markdowns app config."""
 
     default_auto_field = "django.db.models.BigAutoField"
     name = "django_markdowns"
