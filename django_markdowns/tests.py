@@ -28,3 +28,8 @@ class MarkdownsTestCase(TestCase):
     def test_templatefilter(self):
         html = markdowns.md("This is a simple paragraph.")
         self.assertEqual(html, "<p>This is a simple paragraph.</p>")
+
+        html = markdowns.md("* this\n* is\n* a\n* list")
+        self.assertEqual(
+            html, "<ul><li>this</li><li>is</li><li>a</li><li>list</li></ul>"
+        )
