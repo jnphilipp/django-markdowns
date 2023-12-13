@@ -38,6 +38,8 @@ jobs:
         exclude:
           - python-version: 3.8
             django-version: 5.0
+          - python-version: 3.9
+            django-version: 5.0
     steps:
       - uses: actions/checkout@v4
       - name: Set up Python ${{ matrix.python-version }}
