@@ -39,7 +39,6 @@ jobs:
           - python-version: 3.8
             django-version: 5.0
     steps:
-    steps:
       - uses: actions/checkout@v4
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v4
