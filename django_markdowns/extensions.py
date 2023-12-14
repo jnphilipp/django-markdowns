@@ -35,7 +35,7 @@ from markdown.inlinepatterns import (
     IMAGE_LINK_RE,
     LINK_RE,
 )
-from typing import Optional, Tuple
+from typing import Match, Optional, Tuple, Union
 from urllib.parse import urlparse
 from xml.etree.ElementTree import Element
 
@@ -117,7 +117,9 @@ class DjangoLinkInlineProcessor(LinkInlineProcessor):
 class DjangoImageInlineProcessor(DjangoLinkInlineProcessor, ImageInlineProcessor):
     """Django link inline processor."""
 
-    def handleMatch(self, m: re.Match) -> Tuple[Element, int, int]:
+    def handleMatch(
+        self, m: Match[str], data: str
+    ) -> Tuple[Union[Element, str, None], Optional[int], Optional[int]]:
         """Handle Match."""
         el, start, end = super().handleMatch(m)
 
