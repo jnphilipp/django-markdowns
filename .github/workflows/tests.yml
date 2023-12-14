@@ -27,7 +27,7 @@ jobs:
       - name: mypy
         run: |
           python -m pip install mypy
-          mypy --install-types --non-interactive
+          mypy --install-types --non-interactive --cache-dir=.mypy_cache/
           mypy . --ignore-missing-imports
   test:
     runs-on: ubuntu-latest
