@@ -35,5 +35,5 @@ class MarkdownsTestCase(TestCase):
         html = markdowns.md("* this\n* is\n* a\n* list")
         self.assertEqual(
             html,
-            "<ul>\n?<li>this</li>\n?<li>is</li>\n?<li>a</li>\n?<li>list</li>\n?</ul>",
+            "<ul>\n<li>this</li>\n<li>is</li>\n<li>a</li>\n<li>list</li>\n</ul>",
         )
