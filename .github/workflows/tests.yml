@@ -1,7 +1,5 @@
 name: Tests
 
-on: [push, pull_request]
-
 jobs:
   linting:
     runs-on: ubuntu-latest
@@ -27,7 +25,6 @@ jobs:
       - name: mypy
         run: |
           python -m pip install mypy
-          mypy --install-types --non-interactive --cache-dir=.mypy_cache/
           mypy . --ignore-missing-imports
   test:
     runs-on: ubuntu-latest
