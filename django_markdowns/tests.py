@@ -25,11 +25,15 @@ from .templatetags import markdowns
 
 
 class MarkdownsTestCase(TestCase):
+    """Markdown test case."""
+
     def test_templatefilter(self):
+        """Simple test for template filter."""
         html = markdowns.md("This is a simple paragraph.")
         self.assertEqual(html, "<p>This is a simple paragraph.</p>")
 
         html = markdowns.md("* this\n* is\n* a\n* list")
         self.assertEqual(
-            html, "<ul><li>this</li><li>is</li><li>a</li><li>list</li></ul>"
+            html,
+            "<ul>\n?<li>this</li>\n?<li>is</li>\n?<li>a</li>\n?<li>list</li>\n?</ul>",
         )
