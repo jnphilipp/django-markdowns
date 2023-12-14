@@ -117,9 +117,9 @@ class DjangoLinkInlineProcessor(LinkInlineProcessor):
 class DjangoImageInlineProcessor(DjangoLinkInlineProcessor, ImageInlineProcessor):
     """Django link inline processor."""
 
-    def handleMatch(self, m: re.Match, data: str) -> Tuple[Element, int, int]:
+    def handleMatch(self, m: re.Match) -> Tuple[Element, int, int]:
         """Handle Match."""
-        el, start, end = super().handleMatch(m, data)
+        el, start, end = super().handleMatch(m)
 
         if IMG_CLASS:
             el.set("class", IMG_CLASS)
