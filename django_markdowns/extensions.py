@@ -30,22 +30,29 @@ from django.core.exceptions import ValidationError
 from django.core.validators import EmailValidator
 from django.urls import reverse, resolve, Resolver404, NoReverseMatch
 from markdown.inlinepatterns import (
-    ImageInlineProcessor,
-    LinkInlineProcessor,
     IMAGE_LINK_RE,
+    ImageInlineProcessor,
     LINK_RE,
+    LinkInlineProcessor,
+    SimpleTagInlineProcessor,
 )
-from typing import Match, Optional, Tuple
+from typing import Optional, Tuple
 from urllib.parse import urlparse
 from xml.etree.ElementTree import Element
 
 from .settings import IMG_CLASS
 
 
+SUP_RE = r"(\^)([\S]+?)(\^)"
+SUB_RE = r"(\~)([\S]+?)(\~)"
+
+
 class DjangoLinkInlineProcessor(LinkInlineProcessor):
     """Django link inline processor."""
 
-    def getLink(self, data: str, index: int) -> Tuple[str, Optional[str], int, bool]:
+    def getLink(  # noqa, N802
+        self, data: str, index: int
+    ) -> Tuple[str, Optional[str], int, bool]:
         """Get link, with django specifix stuff."""
         href, title, index, handled = super().getLink(data, index)
         return self._clean_link(href), title, index, handled
@@ -117,21 +124,30 @@ class DjangoLinkInlineProcessor(LinkInlineProcessor):
 class DjangoImageInlineProcessor(DjangoLinkInlineProcessor, ImageInlineProcessor):
     """Django link inline processor."""
 
-    def handleMatch(
-        self, m: Match[str], data: str
+    def handleMatch(  # noqa, N802
+        self, m: re.Match[str], data: str
     ) -> Tuple[Optional[Element], Optional[int], Optional[int]]:
         """Handle Match."""
         el, start, end = super().handleMatch(m, data)
 
-        if IMG_CLASS:
+        if IMG_CLASS and el:
             el.set("class", IMG_CLASS)
         return el, start, end
+
+
+class SubSupExtension(markdown.Extension):
+    """Subscript/superscript markdown extension."""
+
+    def extendMarkdown(self, md: markdown.Markdown):  # noqa, N802
+        """Extend markdown."""
+        md.inlinePatterns.register(SimpleTagInlineProcessor(SUB_RE, "sub"), "sub", 65)
+        md.inlinePatterns.register(SimpleTagInlineProcessor(SUP_RE, "sup"), "sup", 65)
 
 
 class DjangoExtension(markdown.Extension):
     """Django markdown extension."""
 
-    def extendMarkdown(self, md: markdown.Markdown, *args, **kwrags):
+    def extendMarkdown(self, md: markdown.Markdown):  # noqa, N802
         """Extend markdown."""
         md.inlinePatterns.register(DjangoLinkInlineProcessor(LINK_RE, md), "link", 160)
         md.inlinePatterns.register(

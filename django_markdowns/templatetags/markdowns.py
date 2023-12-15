@@ -24,7 +24,7 @@ from django.template import Library
 from django.utils.safestring import mark_safe
 from django.template.defaultfilters import stringfilter
 
-from ..extensions import DjangoExtension
+from ..extensions import DjangoExtension, SubSupExtension
 
 register = Library()
 
@@ -35,6 +35,11 @@ def md(text: str) -> str:
     """Convert markdown to html."""
     return mark_safe(
         markdown.markdown(
-            text, extensions=["markdown.extensions.fenced_code", DjangoExtension()]
+            text,
+            extensions=[
+                "markdown.extensions.fenced_code",
+                DjangoExtension(),
+                SubSupExtension(),
+            ],
         )
     )

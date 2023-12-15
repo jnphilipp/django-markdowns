@@ -11,3 +11,6 @@ Provides markdown functionality for Django via a template filter.
      ```
      [Some link](APP_NAME:VIEW_NAME|PARAMS,COMMA,SEPARATED)
      ```
+ * Adding `SubSupExtension` extionsion for markdown package.
+   * use `~subscript~` to get `<sub>subscript</sub>`
+   * use `^superscript^` to get `<sup>superscript</sup>`

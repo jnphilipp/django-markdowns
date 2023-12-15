@@ -37,3 +37,10 @@ class MarkdownsTestCase(TestCase):
             html,
             "<ul>\n<li>this</li>\n<li>is</li>\n<li>a</li>\n<li>list</li>\n</ul>",
         )
+
+        self.assertEqual(
+            "This is ^superscript^ and ~subscript~.",
+            markdowns.md(
+                "<p>This is <sup>superscript</sup> and <sub>subscript</sub>.</p>"
+            ),
+        )
