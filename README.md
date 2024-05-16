@@ -2,6 +2,9 @@
 
 Provides markdown functionality for Django via a template filter.
 
+![Tests](https://github.com/jnphilipp/django-markdowns/actions/workflows/tests.yml/badge.svg)
+[![pypi Version](https://img.shields.io/pypi/v/django-markdowns.svg?logo=pypi&logoColor=white)](https://pypi.org/project/django-markdowns/)
+
 ## Features:
  * Adding `md` Django template filter.
    * Add `django_markdowns` to `INSTALLED_APPS` in `settings.py`.
