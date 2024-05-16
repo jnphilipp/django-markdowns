@@ -41,8 +41,8 @@ from xml.etree.ElementTree import Element
 from .settings import IMG_CLASS
 
 
-SUP_RE = r"()\^(.*?)\^"
-SUB_RE = r"()\~(.*?)\~"
+SUP_RE = r"()^(.*?)^"
+SUB_RE = r"()~(.*?)~"
 
 
 class DjangoLinkInlineProcessor(LinkInlineProcessor):
