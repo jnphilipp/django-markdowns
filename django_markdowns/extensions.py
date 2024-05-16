@@ -1,6 +1,4 @@
-# -*- coding: utf-8 -*-
-# vim: ft=python fileencoding=utf-8 sts=4 sw=4 et:
-# Copyright (C) 2021-2023 J. Nathanael Philipp (jnphilipp) <nathanael@philipp.land>
+# Copyright (C) 2021-2024 J. Nathanael Philipp (jnphilipp) <nathanael@philipp.land>
 #
 # This file is part of django_markdowns.
 #
@@ -126,7 +124,7 @@ class DjangoImageInlineProcessor(DjangoLinkInlineProcessor, ImageInlineProcessor
 
     def handleMatch(  # noqa, N802
         self, m: re.Match[str], data: str
-    ) -> Tuple[Optional[Element], Optional[int], Optional[int]]:
+    ) -> tuple[Element | None, int | None, int | None]:
         """Handle Match."""
         el, start, end = super().handleMatch(m, data)
 
