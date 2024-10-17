@@ -22,7 +22,7 @@ from django.template import Library
 from django.utils.safestring import mark_safe
 from django.template.defaultfilters import stringfilter
 
-from ..extensions import DjangoExtension, SubSupExtension
+from ..extensions import DjangoExtension, ExtendedFormatExtension
 
 register = Library()
 
@@ -37,7 +37,7 @@ def md(text: str) -> str:
             extensions=[
                 "markdown.extensions.fenced_code",
                 DjangoExtension(),
-                SubSupExtension(),
+                ExtendedFormatExtension(),
             ],
         )
     )

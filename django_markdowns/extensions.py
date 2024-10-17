@@ -41,10 +41,6 @@ from xml.etree.ElementTree import Element
 from .settings import IMG_CLASS
 
 
-SUP_RE = r"()\^(.*?)\^"
-SUB_RE = r"()~(.*?)~"
-
-
 class DjangoLinkInlineProcessor(LinkInlineProcessor):
     """Django link inline processor."""
 
@@ -133,13 +129,25 @@ class DjangoImageInlineProcessor(DjangoLinkInlineProcessor, ImageInlineProcessor
         return el, start, end
 
 
-class SubSupExtension(markdown.Extension):
-    """Subscript/superscript markdown extension."""
+class ExtendedFormatExtension(markdown.Extension):
+    """Extendend format markdown extension.
+
+    * subscript with ~
+    * superscript with ^
+    * underline with __
+    """
 
     def extendMarkdown(self, md: markdown.Markdown):  # noqa, N802
         """Extend markdown."""
-        md.inlinePatterns.register(SimpleTagInlineProcessor(SUB_RE, "sub"), "sub", 65)
-        md.inlinePatterns.register(SimpleTagInlineProcessor(SUP_RE, "sup"), "sup", 65)
+        md.inlinePatterns.register(
+            SimpleTagInlineProcessor(r"()~(.*?)~", "sub"), "sub", 65
+        )
+        md.inlinePatterns.register(
+            SimpleTagInlineProcessor(r"()\^(.*?)\^", "sup"), "sup", 65
+        )
+        md.inlinePatterns.register(
+            SimpleTagInlineProcessor(r"()__(.*?)__", "u"), "u", 65
+        )
 
 
 class DjangoExtension(markdown.Extension):

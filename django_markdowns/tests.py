@@ -37,6 +37,7 @@ class MarkdownsTestCase(TestCase):
         )
 
         self.assertEqual(
-            markdowns.md("This is ^superscript^ and ~subscript~."),
-            "<p>This is <sup>superscript</sup> and <sub>subscript</sub>.</p>",
+            markdowns.md("This is ^superscript^ and ~subscript~ and __underline__."),
+            "<p>This is <sup>superscript</sup> and <sub>subscript</sub> and "
+            + "<u>underline</u>.</p>",
         )
