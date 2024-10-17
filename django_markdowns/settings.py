@@ -53,6 +53,7 @@ if "EXTENSIONS" in USER_SETTINGS:
                 + "codehilite, legacy_attrs, legacy_em, meta, nl2br, sane_lists, "
                 + "smarty, toc, wikilinks."
             )
+        EXTENSIONS.append(extension)
 
 if "IMG_CLASS" in USER_SETTINGS:
     IMG_CLASS = USER_SETTINGS["IMG_CLASS"]
