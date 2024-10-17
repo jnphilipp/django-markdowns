@@ -23,6 +23,7 @@ from django.utils.safestring import mark_safe
 from django.template.defaultfilters import stringfilter
 
 from ..extensions import DjangoExtension, ExtendedFormatExtension
+from ..settings import EXTENSIONS
 
 register = Library()
 
@@ -38,6 +39,7 @@ def md(text: str) -> str:
                 "markdown.extensions.fenced_code",
                 DjangoExtension(),
                 ExtendedFormatExtension(),
-            ],
+            ]
+            + EXTENSIONS,
         )
     )

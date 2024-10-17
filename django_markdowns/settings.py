@@ -18,13 +18,44 @@
 
 from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured
-from typing import Optional
 
 
 USER_SETTINGS = getattr(settings, "MARKDOWNS", {})
 
+EXTENSIONS: list[str] = []
+IMG_CLASS: str | None = None
 USE_BOOTSTRAP: bool = False
-IMG_CLASS: Optional[str] = None
+
+if "EXTENSIONS" in USER_SETTINGS:
+    for extension in USER_SETTINGS["EXTENSIONS"]:
+        if extension not in [
+            "extra",
+            "abbr",
+            "attr_list",
+            "def_list",
+            "footnotes",
+            "md_in_html",
+            "tables",
+            "admonition",
+            "codehilite",
+            "legacy_attrs",
+            "legacy_em",
+            "meta",
+            "nl2br",
+            "sane_lists",
+            "smarty",
+            "toc",
+            "wikilinks",
+        ]:
+            raise ImproperlyConfigured(
+                f"Unkown extension: {extension}. Musst be one of: extra, abbr, "
+                + "attr_list, def_list, footnotes, md_in_html, tables, admonition, "
+                + "codehilite, legacy_attrs, legacy_em, meta, nl2br, sane_lists, "
+                + "smarty, toc, wikilinks."
+            )
+
+if "IMG_CLASS" in USER_SETTINGS:
+    IMG_CLASS = USER_SETTINGS["IMG_CLASS"]
 
 if "USE_BOOTSTRAP" in USER_SETTINGS:
     USE_BOOTSTRAP = USER_SETTINGS["USE_BOOTSTRAP"]
@@ -34,6 +65,3 @@ if "USE_BOOTSTRAP" in USER_SETTINGS:
 
     if USE_BOOTSTRAP:
         IMG_CLASS = "img-fluid"
-
-if "IMG_CLASS" in USER_SETTINGS:
-    IMG_CLASS = USER_SETTINGS["IMG_CLASS"]

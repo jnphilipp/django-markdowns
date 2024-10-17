@@ -34,7 +34,6 @@ from markdown.inlinepatterns import (
     LinkInlineProcessor,
     SimpleTagInlineProcessor,
 )
-from typing import Optional, Tuple
 from urllib.parse import urlparse
 from xml.etree.ElementTree import Element
 
@@ -46,7 +45,7 @@ class DjangoLinkInlineProcessor(LinkInlineProcessor):
 
     def getLink(  # noqa, N802
         self, data: str, index: int
-    ) -> Tuple[str, Optional[str], int, bool]:
+    ) -> tuple[str, str | None, int, bool]:
         """Get link, with django specifix stuff."""
         href, title, index, handled = super().getLink(data, index)
         return self._clean_link(href), title, index, handled
@@ -81,7 +80,6 @@ class DjangoLinkInlineProcessor(LinkInlineProcessor):
                 url_name, args = url_name.split("|")
                 url = reverse(url_name, args=args.split(","))
             else:
-                print(url_name)
                 url = reverse(url_name)
         except NoReverseMatch:
             pass
