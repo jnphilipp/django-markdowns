@@ -50,4 +50,4 @@ jobs:
         run: |
           django-admin startproject example .
           echo "INSTALLED_APPS.append('django_markdowns')" >> example/settings.py
-        python manage.py test
+          python manage.py test
