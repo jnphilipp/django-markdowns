@@ -124,7 +124,7 @@ class DjangoImageInlineProcessor(DjangoLinkInlineProcessor, ImageInlineProcessor
         """Handle Match."""
         el, start, end = super().handleMatch(m, data)
 
-        if IMG_CLASS and el:
+        if el is not None and IMG_CLASS is not None:
             el.set("class", IMG_CLASS)
         return el, start, end
 
