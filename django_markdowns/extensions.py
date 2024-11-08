@@ -66,7 +66,7 @@ class DjangoLinkInlineProcessor(LinkInlineProcessor):
                     raise ValueError(f"Invalid email address: {email}.")
 
             return href
-        elif href.startswith("#"):
+        elif href.startswith("#") or href.startswith("/"):
             return href
 
         # Remove fragments or query params before trying to match the url name
