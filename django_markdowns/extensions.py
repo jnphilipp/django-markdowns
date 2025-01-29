@@ -27,6 +27,7 @@ from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.core.validators import EmailValidator
 from django.urls import reverse, resolve, Resolver404, NoReverseMatch
+from django.utils.translation import gettext_lazy as _
 from markdown.inlinepatterns import (
     IMAGE_LINK_RE,
     ImageInlineProcessor,
@@ -124,7 +125,32 @@ class DjangoImageInlineProcessor(DjangoLinkInlineProcessor, ImageInlineProcessor
         """Handle Match."""
         el, start, end = super().handleMatch(m, data)
 
-        if el is not None and IMG_CLASS is not None:
+        if el is not None and el.get("src").endswith(".pdf"):
+            obj = Element("object")
+            obj.set("data", el.get("src"))
+            obj.set("type", "application/pdf")
+            obj.set("width", "100%")
+            obj.set("height", f'{el.get("title", "600")}px')
+            obj.set("title", el.get("alt"))
+
+            iframe = Element("iframe")
+            iframe.set("src", el.get("src"))
+            iframe.set("width", "100%")
+            iframe.set("height", f'{el.get("title", "600")}px')
+            iframe.set("style", "border: none;")
+            iframe.set("title", el.get("alt"))
+            obj.append(iframe)
+
+            p = Element("p")
+            p.text = str(_("Your browser does not support PDFs."))
+            iframe.append(p)
+
+            a = Element("a")
+            a.set("href", el.get("src"))
+            a.text = str(_("Download the PDF"))
+            p.append(a)
+            el = obj
+        elif el is not None and IMG_CLASS is not None:
             el.set("class", IMG_CLASS)
         return el, start, end
 

@@ -41,3 +41,31 @@ class MarkdownsTestCase(TestCase):
             "<p>This is <sup>superscript</sup> and <sub>subscript</sub> and "
             + "<u>underline</u>.</p>",
         )
+
+    def test_djangoimageinlineprocessor(self):
+        """Test the pdf functionality of the django image inline processor."""
+        html = markdowns.md(
+            "![PDF Title](https://example.com/test/test.pdf)",
+        )
+        self.assertEqual(
+            html,
+            '<p>\n<object data="https://example.com/test/test.pdf" height="600px" '
+            + 'title="PDF Title" type="application/pdf" width="100%">\n<iframe '
+            'height="600px" src="https://example.com/test/test.pdf" style="border: '
+            + 'none;" title="PDF Title" width="100%">\n<p>Your browser does not '
+            + 'support PDFs.<a href="https://example.com/test/test.pdf">Download the '
+            + "PDF</a></p>\n</iframe>\n</object>\n</p>",
+        )
+
+        html = markdowns.md(
+            '![PDF Title](https://example.com/test/test.pdf "850")',
+        )
+        self.assertEqual(
+            html,
+            '<p>\n<object data="https://example.com/test/test.pdf" height="850px" '
+            + 'title="PDF Title" type="application/pdf" width="100%">\n<iframe '
+            + 'height="850px" src="https://example.com/test/test.pdf" style="border: '
+            + 'none;" title="PDF Title" width="100%">\n<p>Your browser does not '
+            + 'support PDFs.<a href="https://example.com/test/test.pdf">Download the '
+            + "PDF</a></p>\n</iframe>\n</object>\n</p>",
+        )
