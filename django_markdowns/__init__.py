@@ -23,6 +23,6 @@ __license__ = "GPLv3+"
 __maintainer__ = __author__
 __email__ = "nathanael@philipp.land"
 __app_name__ = "django_markdowns"
-__version_info__ = (0, 4, 4)
+__version_info__ = (0, 5, 0)
 __version__ = ".".join(str(e) for e in __version_info__)
 __github__ = "https://github.com/jnphilipp/django-markdowns"
