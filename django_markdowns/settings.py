@@ -18,7 +18,7 @@
 
 from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured
-from markdown.extension import Extension
+from markdown import Extension
 
 
 USER_SETTINGS = getattr(settings, "MARKDOWNS", {})
