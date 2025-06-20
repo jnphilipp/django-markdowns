@@ -18,11 +18,12 @@
 
 from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured
+from markdown.extension import Extension
 
 
 USER_SETTINGS = getattr(settings, "MARKDOWNS", {})
 
-EXTENSIONS: list[str] = []
+EXTENSIONS: list[str | Extension] = []
 IMG_CLASS: str | None = None
 USE_BOOTSTRAP: bool = False
 
@@ -55,6 +56,10 @@ if "EXTENSIONS" in USER_SETTINGS:
             )
         EXTENSIONS.append(extension)
 
+if "CUSTOM_EXTENSIONS" in USER_SETTINGS:
+    for extension in USER_SETTINGS["CUSTOM_EXTENSIONS"]:
+        EXTENSIONS.append(extension)
+
 if "IMG_CLASS" in USER_SETTINGS:
     IMG_CLASS = USER_SETTINGS["IMG_CLASS"]
 
@@ -65,4 +70,7 @@ if "USE_BOOTSTRAP" in USER_SETTINGS:
         raise ImproperlyConfigured("USE_BOOTSTRAP needs to be a boolean.")
 
     if USE_BOOTSTRAP:
-        IMG_CLASS = "img-fluid"
+        if IMG_CLASS is None:
+            IMG_CLASS = "img-fluid"
+        elif "img-fuild" not in IMG_CLASS:
+            IMG_CLASS += " img-fluid"
