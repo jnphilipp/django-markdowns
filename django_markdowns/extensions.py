@@ -110,7 +110,7 @@ class DjangoLinkInlineProcessor(LinkInlineProcessor):
         if parsed_url.scheme not in ("http", "https", "ftp"):
             raise ValueError(
                 "Must provide an absolute URL (be sure to include https://, http:// or "
-                + f"ftp://): {href}."
+                + f"ftp://) or a proper Django URL-pattern name: {href}."
             )
 
         return href
