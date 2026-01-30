@@ -1,4 +1,4 @@
-# Copyright (C) 2021-2025 J. Nathanael Philipp (jnphilipp) <nathanael@philipp.land>
+# Copyright (C) 2021-2026 J. Nathanael Philipp (jnphilipp) <nathanael@philipp.land>
 #
 # This file is part of django_markdowns.
 #
@@ -19,7 +19,6 @@
 from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured
 from markdown import Extension
-
 
 USER_SETTINGS = getattr(settings, "MARKDOWNS", {})
 

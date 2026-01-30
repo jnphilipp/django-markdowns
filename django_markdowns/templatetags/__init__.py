@@ -1,4 +1,4 @@
-# Copyright (C) 2021-2025 J. Nathanael Philipp (jnphilipp) <nathanael@philipp.land>
+# Copyright (C) 2021-2026 J. Nathanael Philipp (jnphilipp) <nathanael@philipp.land>
 #
 # This file is part of django_markdowns.
 #

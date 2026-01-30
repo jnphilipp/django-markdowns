@@ -1,4 +1,4 @@
-# Copyright (C) 2021-2025 J. Nathanael Philipp (jnphilipp) <nathanael@philipp.land>
+# Copyright (C) 2021-2026 J. Nathanael Philipp (jnphilipp) <nathanael@philipp.land>
 #
 # This file is part of django_markdowns.
 #
@@ -15,7 +15,6 @@
 # You should have received a copy of the GNU General Public License
 # along with django_markdowns.  If not, see <http://www.gnu.org/licenses/>.
 """Markdowns Django app tests."""
-
 
 from django.test import TestCase
 
