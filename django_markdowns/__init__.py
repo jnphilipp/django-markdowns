@@ -18,10 +18,10 @@
 
 __author__ = "J. Nathanael Philipp"
 __copyright__ = "Copyright 2021-2026 J. Nathanael Philipp (jnphilipp)"
-__license__ = "GPLv3+"
+__license__ = "GPL-3.0-or-later"
 __maintainer__ = __author__
 __email__ = "nathanael@philipp.land"
 __app_name__ = "django_markdowns"
-__version_info__ = (0, 5, 3)
+__version_info__ = (0, 5, 4)
 __version__ = ".".join(str(e) for e in __version_info__)
-__github__ = "https://github.com/jnphilipp/django-markdowns"
+__repository__ = "https://github.com/jnphilipp/django-markdowns"
